@@ -1,122 +1,24 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | DeadEyes</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
-  <meta property="og:title" content="Hi!">
-  <meta property="og:description" content="Cheat-free experience for your Minecraft server.">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="sprimmy.github.io">
-  <style>
-      body {
-          background-color: #666666;
-          margin: 0;
-          overflow: hidden;
-          font-family: 'JetBrains Mono', sans-serif;
-          color: #f2111e; 
-          text-align: center;
-      }
-      .header {
-          padding: 20px;
-          font-size: 36px;
-          font-weight: bold;
-          animation: wave 3s infinite alternate ease-in-out;
-          color: #fff;
-          margin-top: 40vh; 
-      }
-      .content {
-          padding: 20px;
-          font-size: 18px;
-          line-height: 1.5;
-      }
-      canvas {
-          position: fixed;
-          top: 0;
-          left: 0;
-          z-index: -1;
-      }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QwQ</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
 </head>
-
 <body>
-  <div class="header">Welcome!</div>
-  <div class="header">I'm Sprinp</div>
-  <canvas id="rain" width="934" height="750"></canvas>
-  <script>
-      const canvas = document.getElementById('rain');
-      const ctx = canvas.getContext('2d');
-      let width, height;
-
-      function resize() {
-          width = canvas.width = window.innerWidth;
-          height = canvas.height = window.innerHeight;
-      }
-
-      window.addEventListener('resize', resize);
-      resize();
-
-      const particles = [];
-      const particleCount = 250;
-
-      function createParticle() {
-          const particle = {
-              x: Math.random() * width,
-              y: Math.random() * height,
-              vx: Math.random() * 2 - 1,
-              vy: Math.random() * 2 + 1,
-              size: Math.random() * 3 + 1,
-              color: '#fff'
-          };
-          particles.push(particle);
-      }
-
-      function update() {
-          for (let i = 0; i < particles.length; i++) {
-              const p = particles[i];
-              p.x += p.vx;
-              p.y += p.vy;
-              if (p.x < 0 || p.x > width || p.y > height) {
-                  p.x = Math.random() * width;
-                  p.y = -20;
-              }
-          }
-      }
-
-      function draw() {
-          ctx.clearRect(0, 0, width, height);
-          ctx.fillStyle = '#fff';
-          for (let i = 0; i < particles.length; i++) {
-              const p = particles[i];
-              ctx.beginPath();
-              ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-              ctx.closePath();
-              ctx.fill();
-          }
-      }
-
-      function loop() {
-          update();
-          draw();
-          requestAnimationFrame(loop);
-      }
-
-      for (let i = 0; i < particleCount; i++) {
-          createParticle();
-      }
-
-      loop();
-
-      document.addEventListener('contextmenu', function (e) { e.preventDefault();});
-  </script>
-  <style>
-      @keyframes wave {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(-10px); }
-      }
-  </style>
+    <h1>balls</h1>
 </body>
-
 </html>
