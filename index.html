@@ -3,23 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>balls</title>
+    <title>Your Product</title>
     <style>
         body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
-            color: white;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px;
             text-align: center;
+        }
+        nav {
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+            background-color: #333;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px;
+            display: inline-block;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        .hero {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+        }
+        .content {
+            padding: 50px;
+            text-align: center;
+        }
+        .content h2 {
+            margin-top: 0;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <h1>balls</h1>
-    <h2>text</h2>
+
+    <header>
+        <h1>test</h1>
+    </header>
+
+    <nav>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section class="hero">
+        <h1>Welcome to Your Product</h1>
+        <p>High performance, security, and reliability for all your needs</p>
+    </section>
+
+    <section class="content" id="features">
+        <h2>Features</h2>
+        <p>Feature 1 - Description</p>
+        <p>Feature 2 - Description</p>
+        <p>Feature 3 - Description</p>
+    </section>
+
+    <section class="content" id="pricing">
+        <h2>Pricing</h2>
+        <p>Basic Plan: $X/month</p>
+        <p>Pro Plan: $Y/month</p>
+        <p>Enterprise Plan: Contact us for pricing</p>
+    </section>
+
+    <footer id="contact">
+        <p>Contact us at: support@yourmom.com</p>
+    </footer>
+
 </body>
 </html>
