@@ -1,102 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #1a1a1a;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            margin: 0;
-            padding: 10px;
-            text-align: center;
-            background-color: #333;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 15px;
-            display: inline-block;
-        }
-        nav a:hover {
-            background-color: #575757;
-        }
-        .hero {
-            background-color: #1a1a1a;
-            color: #fff;
-            padding: 100px 0;
-            text-align: center;
-        }
-        .hero h1 {
-            margin: 0;
-            font-size: 3rem;
-        }
-        .hero p {
-            font-size: 1.2rem;
-        }
-        .content {
-            padding: 50px;
-            text-align: center;
-        }
-        .content h2 {
-            margin-top: 0;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="tic" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
+
+    .game-container {
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      background-color: #fff;
+      border: 2px solid #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    .cell.x {
+      color: #ff6347;
+    }
+
+    .cell.o {
+      color: #4682b4;
+    }
+
+    .winning-message {
+      font-size: 24px;
+      margin-bottom: 10px;
+      height: 30px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4682b4;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #4169e1;
+    }
+  </style>
 </head>
 <body>
+  <div class="game-container">
+    <h1>Tic Tac Toe</h1>
+    <div class="board" id="board">
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+    </div>
+    <div class="result">
+      <h2 id="winning-message" class="winning-message"></h2>
+      <button id="restartButton">Restart Game</button>
+    </div>
+  </div>
 
-    <header>
-        <h1>test</h1>
-    </header>
+  <script>
+    const cells = document.querySelectorAll("[data-cell]");
+    const board = document.getElementById("board");
+    const winningMessageTextElement = document.getElementById("winning-message");
+    const restartButton = document.getElementById("restartButton");
 
-    <nav>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    const X_CLASS = "x";
+    const O_CLASS = "o";
+    let oTurn;
 
-    <section class="hero">
-        <h1>Welcome to This site</h1>
-        <p>High performance, security, and reliability for all your needs</p>
-    </section>
+    const WINNING_COMBINATIONS = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
 
-    <section class="content" id="features">
-        <h2>Features</h2>
-        <p>Feature 1 - balls</p>
-        <p>Feature 2 - idk</p>
-        <p>Feature 3 - woah!</p>
-    </section>
+    startGame();
 
-    <section class="content" id="pricing">
-        <h2>Pricing</h2>
-        <p>Basic Plan: $X/month</p>
-        <p>Pro Plan: $Y/month</p>
-        <p>Enterprise Plan: Contact us for pricing</p>
-    </section>
+    restartButton.addEventListener("click", startGame);
 
-    <footer id="contact">
-        <p>Contact us at: support@yourmom.com</p>
-    </footer>
+    function startGame() {
+      oTurn = false;
+      cells.forEach(cell => {
+        cell.classList.remove(X_CLASS);
+        cell.classList.remove(O_CLASS);
+        cell.removeEventListener("click", handleClick);
+        cell.addEventListener("click", handleClick, { once: true });
+      });
+      setBoardHoverClass();
+      winningMessageTextElement.textContent = "";
+    }
 
+    function handleClick(e) {
+      const cell = e.target;
+      const currentClass = oTurn ? O_CLASS : X_CLASS;
+      placeMark(cell, currentClass);
+
+      if (checkWin(currentClass)) {
+        endGame(false);
+      } else if (isDraw()) {
+        endGame(true);
+      } else {
+        swapTurns();
+        setBoardHoverClass();
+      }
+    }
+
+    function endGame(draw) {
+      if (draw) {
+        winningMessageTextElement.textContent = "Draw!";
+      } else {
+        winningMessageTextElement.textContent = `${oTurn ? "O's" : "X's"} Wins!`;
+      }
+    }
+
+    function isDraw() {
+      return [...cells].every(cell => {
+        return cell.classList.contains(X_CLASS) || cell.classList.contains(O_CLASS);
+      });
+    }
+
+    function placeMark(cell, currentClass) {
+      cell.classList.add(currentClass);
+    }
+
+    function swapTurns() {
+      oTurn = !oTurn;
+    }
+
+    function setBoardHoverClass() {
+      board.classList.remove(X_CLASS);
+      board.classList.remove(O_CLASS);
+      if (oTurn) {
+        board.classList.add(O_CLASS);
+      } else {
+        board.classList.add(X_CLASS);
+      }
+    }
+
+    function checkWin(currentClass) {
+      return WINNING_COMBINATIONS.some(combination => {
+        return combination.every(index => {
+          return cells[index].classList.contains(currentClass);
+        });
+      });
+    }
+  </script>
 </body>
 </html>
