@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SillyVideo!</title>
+  <title>TikTok Clone</title>
   <style>
     * {
       margin: 0;
@@ -13,181 +13,182 @@
     }
 
     body {
-      background-color: #f9f9f9;
-    }
-
-    /* Header */
-    header {
-      background-color: #ff0000;
-      padding: 10px 20px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header .logo {
-      color: #fff;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    header input[type="text"] {
-      padding: 8px;
-      width: 500px;
-      border: none;
-      border-radius: 3px;
-      outline: none;
-    }
-
-    header button {
-      padding: 8px 12px;
-      margin-left: 10px;
-      background-color: #e5e5e5;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
-    /* Main layout */
-    .main {
-      display: flex;
+      height: 100vh;
+      overflow: hidden;
     }
 
     /* Sidebar */
     .sidebar {
-      width: 220px;
-      background-color: #fff;
-      padding: 20px 10px;
-      border-right: 1px solid #e5e5e5;
-      height: 100vh;
-    }
-
-    .sidebar a {
-      display: block;
-      padding: 10px;
-      color: #000;
-      text-decoration: none;
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-    }
-
-    .sidebar a:hover {
-      background-color: #f0f0f0;
-    }
-
-    /* Content Area */
-    .content {
-      flex: 1;
-      padding: 20px;
-    }
-
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      width: 80px;
+      background-color: #000;
+      padding: 10px 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 20px;
     }
 
-    .video {
-      background-color: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    .sidebar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       cursor: pointer;
     }
 
-    .video img {
-      width: 100%;
-    }
-
-    .video h3 {
-      padding: 10px;
-      font-size: 1rem;
-      color: #333;
-    }
-
-    .video p {
-      padding: 0 10px 10px 10px;
+    .sidebar a {
+      color: #fff;
       font-size: 0.9rem;
-      color: #666;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      background-color: #f9f9f9;
+      overflow-y: scroll;
+      padding: 20px;
+    }
+
+    .video-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .video-container video {
+      width: 300px;
+      height: 500px;
+      background-color: #000;
+      border-radius: 10px;
+    }
+
+    .video-details {
+      width: 300px;
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    .video-details h3 {
+      font-size: 1.2rem;
+      color: #000;
+      margin-bottom: 5px;
+    }
+
+    .video-details p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background-color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    header button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    header button:hover {
+      background-color: #555;
     }
 
     /* Footer */
     footer {
-      padding: 20px;
       text-align: center;
-      color: #666;
-      background-color: #f1f1f1;
-      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border-top: 1px solid #ddd;
+      position: sticky;
+      bottom: 0;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="logo">YouTube</div>
-    <input type="text" placeholder="Search">
-    <button>Search</button>
-  </header>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <img src="https://via.placeholder.com/40" alt="Profile">
+    <a href="#">Home</a>
+    <a href="#">Discover</a>
+    <a href="#">Inbox</a>
+    <a href="#">Profile</a>
+  </div>
 
   <!-- Main Content -->
   <div class="main">
-    <!-- Sidebar -->
-    <nav class="sidebar">
-      <a href="#">Home</a>
-      <a href="#">Trending</a>
-      <a href="#">Subscriptions</a>
-      <a href="#">Library</a>
-      <a href="#">History</a>
-      <a href="#">Your Videos</a>
-      <a href="#">Watch Later</a>
-    </nav>
+    <!-- Header -->
+    <header>
+      <input type="text" placeholder="Search">
+      <button>Search</button>
+    </header>
 
-    <!-- Video Section -->
-    <div class="content">
-      <h2>Recommended Videos</h2>
-      <div class="video-grid">
-        <div class="video">
-          <img src="https://goober.moaning-on.me/bruh/0ljez1wx.mov" alt="Thumbnail">
-          <h3>Video Title 1</h3>
-          <p>Channel Name • 1M views • 2 weeks ago</p>
-        </div>
-        <div class="video">
-          <img src="https://goober.moaning-on.me/bruh/0ljez1wx.mov" alt="Thumbnail">
-          <h3>Video Title 2</h3>
-          <p>Channel Name • 500K views • 1 month ago</p>
-        </div>
-        <div class="video">
-          <img src="https://goober.moaning-on.me/bruh/0ljez1wx.mov" alt="Thumbnail">
-          <h3>Video Title 3</h3>
-          <p>Channel Name • 2M views • 3 weeks ago</p>
-        </div>
-        <div class="video">
-          <img src="https://goober.moaning-on.me/bruh/0ljez1wx.mov" alt="Thumbnail">
-          <h3>Video Title 4</h3>
-          <p>Channel Name • 750K views • 1 day ago</p>
-        </div>
-        <div class="video">
-          <img src="https://goober.moaning-on.me/bruh/0ljez1wx.mov" alt="Thumbnail">
-          <h3>Video Title 5</h3>
-          <p>Channel Name • 600K views • 5 days ago</p>
-        </div>
-        <div class="video">
-          <img src="https://goober.moaning-on.me/bruh/0ljez1wx.mov" alt="Thumbnail">
-          <h3>Video Title 6</h3>
-          <p>Channel Name • 3M views • 1 month ago</p>
-        </div>
+    <!-- Video Feed -->
+    <div class="video-container">
+      <video controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-details">
+        <h3>Video Title 1</h3>
+        <p>@username • 2M likes • 500K comments</p>
       </div>
     </div>
+
+    <div class="video-container">
+      <video controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-details">
+        <h3>Video Title 2</h3>
+        <p>@username • 1.5M likes • 300K comments</p>
+      </div>
+    </div>
+
+    <div class="video-container">
+      <video controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-details">
+        <h3>Video Title 3</h3>
+        <p>@username • 3M likes • 600K comments</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2024 TikTok Clone - This is a mock design of the TikTok website for educational purposes only.</p>
+    </footer>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>© SillyVideo!</p>
-  </footer>
-
+  <!-- Script -->
   <script>
-    // This script would be used for dynamic functionality, like search or video interactions
     document.querySelector("button").addEventListener("click", function() {
       alert("Search functionality not implemented!");
     });
